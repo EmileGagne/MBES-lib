@@ -31,7 +31,16 @@
 #include "../utils/Exception.hpp"
 
 
-
+/**
+ * read a Sonar file to make a PointCloudGeoreference
+ * 
+ * @param fileName Name of the Sonar file
+ * @param cloudOut The PointCloudGeoreference pointCloud
+ * @param leverArm The georeference leverArm
+ * @param boresight The georeference boresight
+ * @param svpFile The georeference Sound Velocity Profile
+ * @param DoLGF Boolean who indicate if the georeference must be a LGF georeference or a TRF georeference
+ */
 uint64_t readSonarFileIntoPointCloud( std::string fileName, pcl::PointCloud<pcl::PointXYZ>::Ptr cloudOut, 
                     Eigen::Vector3d & leverArm, Eigen::Matrix3d & boresight,
                     SoundVelocityProfile * svpFile, const bool DoLGF = true )
@@ -107,7 +116,13 @@ uint64_t readSonarFileIntoPointCloud( std::string fileName, pcl::PointCloud<pcl:
 
 
 
-
+/**
+ * Read a text file who contains point to add in PointCloud
+ * 
+ * @param filename Name of the text file
+ * @param cloud The PointCloud where to add the points 
+ * @param lastLineToInclude maximum line who can be read
+ */
 uint64_t readTextFileIntoPointCloud( const std::string filename, pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, const uint64_t lastLineToInclude = UINT64_MAX )
 {   
     pcl::PointXYZ point;
@@ -174,7 +189,14 @@ uint64_t readTextFileIntoPointCloud( const std::string filename, pcl::PointCloud
 
 
 
-
+/**
+ * Convert a String value to a Double value
+ * 
+ * @param textIn string value to convert in double
+ * @param numberOut double value to obtain after the conversion
+ * @param whatIsIt error message
+ * @param needAboveZero boolean who precise if the result must be above 0
+ */
 void convertStringToDouble( std::string textIn, double & numberOut, 
                         const std::string whatIsIt, const bool needAboveZero = false )
 {
